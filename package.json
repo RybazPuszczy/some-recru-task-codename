@@ -5,18 +5,25 @@
   "scripts": {
     "build": "tsc",
     "start": "node .build/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
     "@types/express": "^5.0.3",
+    "eslint": "^9.34.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.42.0"
   },
   "dependencies": {
     "express": "^5.1.0",
