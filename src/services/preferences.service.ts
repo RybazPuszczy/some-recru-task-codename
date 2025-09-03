@@ -1,7 +1,7 @@
 import {
   Preferences,
   PreferencesRepository,
-} from "src/models/preferences.model";
+} from "../models/preferences.model";
 
 const preferencesRepository: PreferencesRepository = {
   usr_abcde: {
@@ -34,7 +34,9 @@ const preferencesRepository: PreferencesRepository = {
   },
 };
 
-export const getPreferences = (userId: keyof PreferencesRepository): object => {
+export const getPreferences = (
+  userId: keyof PreferencesRepository,
+): Preferences => {
   return preferencesRepository[userId];
 };
 
