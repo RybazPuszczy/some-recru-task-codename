@@ -13,9 +13,9 @@ export const preferencesControllerFactory = (app: Express) => {
     console.log(`Preferences for user ${req.params.userId} requested`);
 
     try {
-      // get user Preferences by provided userId. 
-	    // for non-existent user it's gonna return an empty object.
-	    // for wrong user id format notify about that by throwing a zod error.
+      // get user Preferences by provided userId.
+      // for non-existent user it's gonna return an empty object.
+      // for wrong user id format notify about that by throwing a zod error.
       const userId = UserIdSchema.parse(req.params.userId);
       const preferences = getPreferences(userId);
       res.status(200).send({ preferences: preferences });
@@ -36,10 +36,10 @@ export const preferencesControllerFactory = (app: Express) => {
     );
 
     try {
-	    // parsing both user id and preferences object is mandatory here as to provide model-perfect entry in data source.
+      // parsing both user id and preferences object is mandatory here as to provide model-perfect entry in data source.
       const userId = UserIdSchema.parse(req.params.userId);
       const newPreferences = PreferencesSchema.parse(req?.body);
-		  // call to service for saving a validated entry
+      // call to service for saving a validated entry
       setPreferences(userId, newPreferences);
 
       res
