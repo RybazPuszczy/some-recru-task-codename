@@ -4,7 +4,7 @@ export const UserIdSchema = z
   .string()
   .regex(
     /^usr_[a-zA-Z0-9]{5}$/,
-    "User ID must be in the format 'usr_XXXXX' (e.g., usr_abcde)",
+    "User ID must be in the format 'usr_XXXXX' (e.g., usr_a1b2c)",
   );
 export type UserId = z.infer<typeof UserIdSchema>;
 

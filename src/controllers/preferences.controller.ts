@@ -7,6 +7,7 @@ import {
   getPreferences,
   setPreferences,
 } from "../services/preferences.service";
+import { getZodError } from "../utils/utils";
 
 export const preferencesControllerFactory = (app: Express) => {
   app.get("/preferences/:userId", (req, res) => {
@@ -37,7 +38,7 @@ export const preferencesControllerFactory = (app: Express) => {
         .send({ message: `Preferences for user ${req.params.userId} updated` });
     } catch (err) {
       if (err instanceof z.ZodError) {
-        const error = { issues: err.issues };
+        const error = getZodError(err);
         res.status(400).send({ error: error });
       }
     }
