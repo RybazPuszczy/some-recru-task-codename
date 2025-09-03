@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { UserId } from "./users.model";
-import { EventType, EventTypeSchema } from "./events.model";
+import { EventTypeSchema } from "./events.model";
 
 export const PreferencesTimeSchema = z.iso.time({ precision: -1 });
 export type PreferencesTime = z.infer<typeof PreferencesTimeSchema>;
