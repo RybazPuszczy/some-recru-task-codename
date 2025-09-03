@@ -13,10 +13,19 @@ export const preferencesControllerFactory = (app: Express) => {
     console.log(`Preferences for user ${req.params.userId} requested`);
 
     try {
-      const preferences = getPreferences(req.params.userId);
+      // get user Preferences by provided userId. 
+	    // for non-existent user it's gonna return an empty object.
+	    // for wrong user id format notify about that by throwing a zod error.
+      const userId = UserIdSchema.parse(req.params.userId);
+      const preferences = getPreferences(userId);
       res.status(200).send({ preferences: preferences });
     } catch (err) {
-      res.status(500).send({ message: err });
+      if (err instanceof z.ZodError) {
+        const error = { issues: err.issues };
+        res.status(400).send({ error: error });
+      } else {
+        res.status(500).send({ error: err });
+      }
     }
   });
 
@@ -27,9 +36,10 @@ export const preferencesControllerFactory = (app: Express) => {
     );
 
     try {
+	    // parsing both user id and preferences object is mandatory here as to provide model-perfect entry in data source.
       const userId = UserIdSchema.parse(req.params.userId);
       const newPreferences = PreferencesSchema.parse(req?.body);
-
+		  // call to service for saving a validated entry
       setPreferences(userId, newPreferences);
 
       res
@@ -37,8 +47,11 @@ export const preferencesControllerFactory = (app: Express) => {
         .send({ message: `Preferences for user ${req.params.userId} updated` });
     } catch (err) {
       if (err instanceof z.ZodError) {
+        // responding with path to wrongly set props of object.
         const error = { issues: err.issues };
         res.status(400).send({ error: error });
+      } else {
+        res.status(500).send({ error: err });
       }
     }
   });

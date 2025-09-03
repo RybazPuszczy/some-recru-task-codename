@@ -3,6 +3,7 @@ import {
   PreferencesRepository,
 } from "src/models/preferences.model";
 
+// fake preferences repository 
 const preferencesRepository: PreferencesRepository = {
   usr_abcde: {
     dnd: {
@@ -34,10 +35,14 @@ const preferencesRepository: PreferencesRepository = {
   },
 };
 
-export const getPreferences = (userId: keyof PreferencesRepository): object => {
+// getter
+export const getPreferences = (
+  userId: keyof PreferencesRepository,
+): Preferences => { 
   return preferencesRepository[userId];
 };
 
+// setter
 export const setPreferences = (
   userId: keyof PreferencesRepository,
   newPreferences: Preferences,
