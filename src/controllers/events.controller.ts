@@ -40,7 +40,7 @@ export const eventsControllerFactory = (app: Express) => {
         const error = getZodError(err);
         res.status(400).send({ error: error });
       } else {
-        res.status(500).send({ message: err });
+        res.status(500).send({ error: err });
       }
     }
   });
