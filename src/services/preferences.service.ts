@@ -1,8 +1,7 @@
 import {
   Preferences,
   PreferencesRepository,
-} from "src/models/preferences.model";
-import { UserId } from "src/models/users.model";
+} from "../models/preferences.model";
 
 // fake preferences repository
 const preferencesRepository: PreferencesRepository = {
