@@ -1,6 +1,5 @@
-import e, { Express } from "express";
+import { Express } from "express";
 import { EventSchema } from "../models/events.model";
-import { Preferences } from "../models/preferences.model";
 import { getPreferences } from "../services/preferences.service";
 import { getZodError, isTimeBetween } from "../utils/utils";
 import z from "zod";
