@@ -3,6 +3,7 @@ import {
   PreferencesRepository,
 } from "../models/preferences.model";
 
+// fake preferences repository
 const preferencesRepository: PreferencesRepository = {
   usr_abcde: {
     dnd: {
@@ -34,15 +35,26 @@ const preferencesRepository: PreferencesRepository = {
   },
 };
 
+/**
+ * Retrieves user preferences from the repository.
+ * @param {string} userId - The unique identifier of the user whose preferences are being get.
+ * @returns {Preferences} - Preferences object
+ */
 export const getPreferences = (
   userId: keyof PreferencesRepository,
 ): Preferences => {
   return preferencesRepository[userId];
 };
 
+/**
+ * Sets or updates a user's preferences in the repository.
+ * @param {string} userId - The unique identifier of the user whose preferences are being set.
+ * @param {Preferences} preferences - The complete preferences object.
+ * @returns {void}
+ */
 export const setPreferences = (
   userId: keyof PreferencesRepository,
-  newPreferences: Preferences,
+  preferences: Preferences,
 ) => {
-  preferencesRepository[userId] = newPreferences;
+  preferencesRepository[userId] = preferences;
 };
